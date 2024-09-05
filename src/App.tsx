@@ -1,5 +1,6 @@
 import React from "react";
 import MenuBar from "./components/MenuBar";
+import Dock from "./components/Dock";
 
 const App: React.FC = () => {
   return (
@@ -8,6 +9,7 @@ const App: React.FC = () => {
       style={{ backgroundImage: `url(/bg-1.jpg)` }}
     >
       <MenuBar />
+      <Dock />
     </div>
   );
 };

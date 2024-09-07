@@ -40,6 +40,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
     e.preventDefault();
     if (windowRef.current) {
       setIsDragging(true);
+      setIsFullScreen(false)
 
       const startX = e.clientX;
       const startY = e.clientY;

@@ -2,7 +2,7 @@ import React from "react";
 import DockItem from "./DockItem";
 
 interface DockProps {
-  onOpen: (windowName: string) => void; // تابعی برای باز کردن پنجره
+  onOpen: (windowName: string) => void;
 }
 
 const Dock: React.FC<DockProps> = ({ onOpen }) => {
@@ -32,7 +32,7 @@ const Dock: React.FC<DockProps> = ({ onOpen }) => {
           onClick={() => onOpen("chrome")}
         />
         <DockItem
-          icon="/icons/calendar.webp"
+          icon="/icons/calender.webp"
           label="Calendar"
           onClick={() => onOpen("calendar")}
         />

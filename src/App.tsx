@@ -3,6 +3,7 @@ import Dock from "./components/Dock";
 import Calculator from "./components/Calculator";
 import Chrome from "./components/Chrome";
 import MenuBar from "./components/MenuBar";
+import Calendar from "./components/Calendar";
 
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
@@ -31,6 +32,7 @@ const App: React.FC = () => {
       {windows.calculator && <Calculator />}
 
       {windows.chrome && <Chrome />}
+      {windows.calendar && <Calendar />}
 
       {/* Dock */}
       <Dock onOpen={toggleWindow} />

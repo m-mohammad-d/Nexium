@@ -78,7 +78,6 @@ const defaultApps = [
     isInstalled: false,
   },
 ];
-
 const AppStore: React.FC = () => {
   const [apps, setApps] = useState<App[]>([]);
 
@@ -96,12 +95,19 @@ const AppStore: React.FC = () => {
     const updatedApps = updateAppList(apps, appId, true);
     setApps(updatedApps);
     saveAppsToLocalStorage(updatedApps);
+
+    window.dispatchEvent(
+      new CustomEvent("appListUpdated", { detail: updatedApps })
+    );
   };
 
   const handleUninstall = (appId: number) => {
     const updatedApps = updateAppList(apps, appId, false);
     setApps(updatedApps);
     saveAppsToLocalStorage(updatedApps);
+    window.dispatchEvent(
+      new CustomEvent("appListUpdated", { detail: updatedApps })
+    );
   };
 
   return (

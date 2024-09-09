@@ -2,22 +2,53 @@ import React, { useState, useEffect } from "react";
 import AppListItem from "./AppListItem";
 import DraggableWindow from "./DraggableWindow";
 import { App } from "../types/AppTypes";
-import { updateAppList, saveAppsToLocalStorage } from "../utils/Apputils";
+import { saveAppsToLocalStorage, updateAppList } from "../utils/Apputils";
+
+// TypeScript type for the CustomEvent detail
+interface AppListUpdatedEvent extends CustomEvent {
+  detail: App[];
+}
 
 const AppList: React.FC = () => {
   const [apps, setApps] = useState<App[]>([]);
   const [selectedAppId, setSelectedAppId] = useState<number | null>(null);
 
   useEffect(() => {
-    const storedApps: App[] = JSON.parse(localStorage.getItem("apps") || "[]");
-    setApps(storedApps.filter((app) => app.isInstalled));
+    const updateAppListFromLocalStorage = () => {
+      const storedApps: App[] = JSON.parse(
+        localStorage.getItem("apps") || "[]"
+      );
+      setApps(storedApps.filter((app) => app.isInstalled));
+    };
+
+    // Initial load
+    updateAppListFromLocalStorage();
+
+    // Event listener for custom events
+    const handleAppListUpdated = (e: Event) => {
+      const customEvent = e as AppListUpdatedEvent;
+      setApps(customEvent.detail.filter((app) => app.isInstalled));
+    };
+
+    window.addEventListener(
+      "appListUpdated",
+      handleAppListUpdated as EventListener
+    );
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener(
+        "appListUpdated",
+        handleAppListUpdated as EventListener
+      );
+    };
   }, []);
 
   const handleDelete = (id: number) => {
-    const updatedApps = updateAppList(apps, id, false);
-    setApps(updatedApps);
+    const storedApps: App[] = JSON.parse(localStorage.getItem("apps") || "[]");
+    const updatedApps = updateAppList(storedApps, id, false);
     saveAppsToLocalStorage(updatedApps);
-    setSelectedAppId(null); // Hide the delete button after deletion
+    setApps(updatedApps.filter((app) => app.isInstalled));
   };
 
   return (

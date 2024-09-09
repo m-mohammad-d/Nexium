@@ -7,76 +7,35 @@ import { updateAppList, saveAppsToLocalStorage } from "../utils/Apputils";
 const defaultApps = [
   {
     id: 1,
-    name: "Telegram",
-    img: "telegram",
-    isInstalled: false,
-  },
-  {
-    id: 2,
-    name: "YouTube",
-    img: "youtube",
-    isInstalled: false,
-  },
-  {
-    id: 3,
-    name: "Instagram",
-    img: "instagram",
-    isInstalled: false,
-  },
-  {
-    id: 4,
     name: "Digikala",
     img: "dijikala",
     isInstalled: false,
   },
   {
-    id: 5,
+    id: 2,
     name: "Balad",
     img: "balad",
     isInstalled: false,
   },
   {
-    id: 6,
+    id: 3,
     name: "Snapp",
     img: "snap",
     isInstalled: false,
   },
   {
-    id: 7,
-    name: "TikTok",
-    img: "tikTok",
-    isInstalled: false,
-  },
-  {
-    id: 8,
-    name: "X (Twitter)",
-    img: "x",
-    isInstalled: false,
-  },
-  {
-    id: 9,
+    id: 4,
     name: "Wikipedia",
     img: "wikipedia",
     isInstalled: false,
   },
   {
-    id: 10,
-    name: "Reddit",
-    img: "reddit",
+    id: 4,
+    name: "googleMaps",
+    img: "Maps",
     isInstalled: false,
   },
-  {
-    id: 11,
-    name: "Amazon",
-    img: "amazon",
-    isInstalled: false,
-  },
-  {
-    id: 12,
-    name: "Netflix",
-    img: "netflix",
-    isInstalled: false,
-  },
+
 ];
 const AppStore: React.FC = () => {
   const [apps, setApps] = useState<App[]>([]);

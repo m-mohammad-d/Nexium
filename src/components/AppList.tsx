@@ -9,7 +9,11 @@ interface AppListUpdatedEvent extends CustomEvent {
   detail: App[];
 }
 
-const AppList: React.FC = () => {
+interface AppListProps {
+  onOpen: (appName: string) => void;
+}
+
+const AppList: React.FC<AppListProps> = ({ onOpen }) => {
   const [apps, setApps] = useState<App[]>([]);
   const [selectedAppId, setSelectedAppId] = useState<number | null>(null);
 
@@ -51,6 +55,10 @@ const AppList: React.FC = () => {
     setApps(updatedApps.filter((app) => app.isInstalled));
   };
 
+  const handleOpenWindow = (appName: string) => {
+    onOpen(appName); // Pass the app name to the onOpen callback
+  };
+
   return (
     <DraggableWindow title="App List">
       <div className="h-full w-full text-gray-400 overflow-y-auto bg-gray-700/90">
@@ -61,7 +69,10 @@ const AppList: React.FC = () => {
               app={app}
               onDelete={handleDelete}
               isSelected={app.id === selectedAppId}
-              onClick={() => setSelectedAppId(app.id)}
+              onClick={() => {
+                setSelectedAppId(app.id);
+                handleOpenWindow(app.name); // Pass the app's name to handleOpenWindow
+              }}
             />
           ))}
         </ul>

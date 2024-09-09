@@ -6,11 +6,14 @@ import MenuBar from "./components/MenuBar";
 import Calendar from "./components/Calendar";
 import AppStore from "./components/AppStore";
 import AppList from "./components/AppList";
-
+import GoogleMaps from "./components/GoogleMaps";
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
     calculator: false,
     chrome: false,
+    calendar: false,
+    appStore: false,
+    appList: false,
   });
 
   const toggleWindow = (windowName: string) => {
@@ -35,7 +38,8 @@ const App: React.FC = () => {
       {windows.chrome && <Chrome />}
       {windows.calendar && <Calendar />}
       {windows.appStore && <AppStore />}
-      {windows.appList && <AppList />}
+      {windows.googleMaps && <GoogleMaps />}
+      {windows.appList && <AppList onOpen={toggleWindow} />}
 
       {/* Dock */}
       <Dock onOpen={toggleWindow} />

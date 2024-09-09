@@ -47,9 +47,9 @@ const Dock: React.FC<DockProps> = ({ onOpen }) => {
           onClick={() => onOpen("photos")}
         />
         <DockItem
-          icon="/icons/trash.webp"
-          label="Trash"
-          onClick={() => onOpen("trash")}
+          icon="/icons/app-store.webp"
+          label="appSotre"
+          onClick={() => onOpen("appStore")}
         />
       </div>
     </div>

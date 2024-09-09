@@ -4,6 +4,7 @@ import Calculator from "./components/Calculator";
 import Chrome from "./components/Chrome";
 import MenuBar from "./components/MenuBar";
 import Calendar from "./components/Calendar";
+import AppStore from "./components/AppStore";
 
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
@@ -30,9 +31,9 @@ const App: React.FC = () => {
 
       {/* Conditional rendering of windows */}
       {windows.calculator && <Calculator />}
-
       {windows.chrome && <Chrome />}
       {windows.calendar && <Calendar />}
+      {windows.appStore && <AppStore />}
 
       {/* Dock */}
       <Dock onOpen={toggleWindow} />

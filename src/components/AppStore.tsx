@@ -1,13 +1,9 @@
-// AppStore.tsx
 import React, { useEffect, useState } from "react";
 import AppCard from "./AppCard";
 import DraggableWindow from "./DraggableWindow";
-export interface App {
-  id: number;
-  name: string;
-  img: string;
-  isInstalled: boolean;
-}
+import { App } from "../types/AppTypes";
+import { updateAppList, saveAppsToLocalStorage } from "../utils/Apputils";
+
 const defaultApps = [
   {
     id: 1,
@@ -92,24 +88,20 @@ const AppStore: React.FC = () => {
       setApps(JSON.parse(storedApps));
     } else {
       setApps(defaultApps);
-      localStorage.setItem("apps", JSON.stringify(defaultApps));
+      saveAppsToLocalStorage(defaultApps);
     }
   }, []);
 
   const handleInstall = (appId: number) => {
-    const updatedApps = apps.map((app) =>
-      app.id === appId ? { ...app, isInstalled: true } : app
-    );
+    const updatedApps = updateAppList(apps, appId, true);
     setApps(updatedApps);
-    localStorage.setItem("apps", JSON.stringify(updatedApps));
+    saveAppsToLocalStorage(updatedApps);
   };
 
   const handleUninstall = (appId: number) => {
-    const updatedApps = apps.map((app) =>
-      app.id === appId ? { ...app, isInstalled: false } : app
-    );
+    const updatedApps = updateAppList(apps, appId, false);
     setApps(updatedApps);
-    localStorage.setItem("apps", JSON.stringify(updatedApps));
+    saveAppsToLocalStorage(updatedApps);
   };
 
   return (

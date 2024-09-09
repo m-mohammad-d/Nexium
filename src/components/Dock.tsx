@@ -51,6 +51,11 @@ const Dock: React.FC<DockProps> = ({ onOpen }) => {
           label="appSotre"
           onClick={() => onOpen("appStore")}
         />
+        <DockItem
+          icon="/icons/more-application.png"
+          label="more application"
+          onClick={() => onOpen("appList")}
+        />
       </div>
     </div>
   );

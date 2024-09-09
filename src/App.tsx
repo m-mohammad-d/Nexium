@@ -5,6 +5,7 @@ import Chrome from "./components/Chrome";
 import MenuBar from "./components/MenuBar";
 import Calendar from "./components/Calendar";
 import AppStore from "./components/AppStore";
+import AppList from "./components/AppList";
 
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
@@ -34,6 +35,7 @@ const App: React.FC = () => {
       {windows.chrome && <Chrome />}
       {windows.calendar && <Calendar />}
       {windows.appStore && <AppStore />}
+      {windows.appList && <AppList />}
 
       {/* Dock */}
       <Dock onOpen={toggleWindow} />

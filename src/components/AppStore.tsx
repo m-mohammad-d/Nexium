@@ -47,6 +47,12 @@ const defaultApps = [
     img: "memoryGame",
     isInstalled: false,
   },
+  {
+    id: 8,
+    name: "todoList",
+    img: "todoList",
+    isInstalled: false,
+  },
 
 
 ];

@@ -25,12 +25,12 @@ const App: React.FC = () => {
     appStore: false,
     appList: false,
     googleMaps: false,
-    wikipedia: false,
-    balad: false,
-    snapp: false,
+    Wikipedia: false,
+    Balad: false,
+    Snapp: false,
     ticTocToe: false,
-    memoryGame: false,
-    digikala: false,
+    momoryGame: false,
+    Digikala: false,
     todoList: false,
   });
 
@@ -70,7 +70,6 @@ const App: React.FC = () => {
     setContextMenu({ visible: false, x: 0, y: 0 });
   };
   console.log(windows);
-  
 
   return (
     <div
@@ -90,15 +89,15 @@ const App: React.FC = () => {
       {windows.calendar && <Calendar />}
       {windows.appStore && <AppStore />}
       {windows.googleMaps && <GoogleMaps />}
-      {windows.wikipedia && <Wikipedia />}
-      {windows.balad && <Balad />}
-      {windows.snapp && <Snapp />}
+      {windows.Wikipedia && <Wikipedia />}
+      {windows.Balad && <Balad />}
+      {windows.Snapp && <Snapp />}
       {windows.ticTocToe && <TicTocToe />}
-      {windows.memoryGame && <MemoryGame />}
-      {windows.digikala && <DigiKala />}
+      {windows.momoryGame && <MemoryGame />}
+      {windows.Digikala && <DigiKala />}
       {windows.todoList && <TodoList />}
       {windows.settings && <SettingsMenu />}
-      
+
       {windows.appList && <AppList onOpen={toggleWindow} />}
 
       {/* Dock */}

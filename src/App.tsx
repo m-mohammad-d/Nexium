@@ -7,6 +7,7 @@ import Calendar from "./components/Calendar";
 import AppStore from "./components/AppStore";
 import AppList from "./components/AppList";
 import GoogleMaps from "./components/GoogleMaps";
+import Wikipedia from "./components/Wikipedia";
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
     calculator: false,
@@ -39,6 +40,7 @@ const App: React.FC = () => {
       {windows.calendar && <Calendar />}
       {windows.appStore && <AppStore />}
       {windows.googleMaps && <GoogleMaps />}
+      {windows.Wikipedia && <Wikipedia />}
       {windows.appList && <AppList onOpen={toggleWindow} />}
 
       {/* Dock */}

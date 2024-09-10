@@ -10,6 +10,7 @@ import GoogleMaps from "./components/GoogleMaps";
 import Wikipedia from "./components/Wikipedia";
 import Balad from "./components/Balad";
 import Snapp from "./components/Snapp";
+import TicTocToe from "./components/TicTocToe";
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
     calculator: false,
@@ -45,6 +46,7 @@ const App: React.FC = () => {
       {windows.Wikipedia && <Wikipedia />}
       {windows.Balad && <Balad />}
       {windows.Snapp && <Snapp />}
+      {windows.ticTocToe && <TicTocToe />}
       {windows.appList && <AppList onOpen={toggleWindow} />}
 
       {/* Dock */}

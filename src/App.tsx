@@ -12,6 +12,7 @@ import Balad from "./components/Balad";
 import Snapp from "./components/Snapp";
 import TicTocToe from "./components/TicTocToe";
 import MemoryGame from "./components/MemoryGame";
+import DigiKala from "./components/DigiKala";
 
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
@@ -50,6 +51,7 @@ const App: React.FC = () => {
       {windows.Snapp && <Snapp />}
       {windows.ticTocToe && <TicTocToe />}
       {windows.momoryGame && <MemoryGame />}
+      {windows.Digikala && <DigiKala />}
       {windows.appList && <AppList onOpen={toggleWindow} />}
 
       {/* Dock */}

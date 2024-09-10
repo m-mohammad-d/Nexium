@@ -8,7 +8,7 @@ const defaultApps = [
   {
     id: 1,
     name: "Digikala",
-    img: "dijikala",
+    img: "digikala",
     isInstalled: false,
   },
   {

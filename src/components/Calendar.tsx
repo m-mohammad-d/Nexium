@@ -42,7 +42,7 @@ const Calendar: React.FC = () => {
         <div
           key={day}
           className={`flex justify-center items-center h-10 w-10 rounded-full ${
-            isToday ? "bg-green-200" : "hover:bg-blue-200"
+            isToday ? "bg-blue-600 text-white" : "hover:bg-red-500"
           } cursor-pointer`}
         >
           {day}
@@ -54,11 +54,11 @@ const Calendar: React.FC = () => {
 
   return (
     <DraggableWindow title="Calendar">
-      <div className="w-full h-full mx-auto p-4 bg-white shadow-md rounded-lg">
+      <div className="w-full h-full mx-auto p-4 bg-gray-800 text-white shadow-lg rounded-lg">
         <div className="flex justify-between items-center mb-4">
           <button
             onClick={handlePrevMonth}
-            className="text-gray-500 hover:text-black"
+            className="text-gray-400 hover:text-white"
           >
             &lt;
           </button>
@@ -70,7 +70,7 @@ const Calendar: React.FC = () => {
           </div>
           <button
             onClick={handleNextMonth}
-            className="text-gray-500 hover:text-black"
+            className="text-gray-400 hover:text-white"
           >
             &gt;
           </button>
@@ -79,7 +79,7 @@ const Calendar: React.FC = () => {
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
             <div
               key={day}
-              className="flex justify-center items-center font-bold text-gray-600"
+              className="flex justify-center items-center font-bold text-gray-400"
             >
               {day}
             </div>

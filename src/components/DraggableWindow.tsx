@@ -40,7 +40,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
     e.preventDefault();
     if (windowRef.current) {
       setIsDragging(true);
-      setIsFullScreen(false)
+      setIsFullScreen(false);
 
       const startX = e.clientX;
       const startY = e.clientY;
@@ -78,12 +78,13 @@ const DraggableWindow: React.FC<WindowProps> = ({
   return (
     <div
       ref={windowRef}
-      className={`absolute bg-gray-200 rounded-xl shadow-lg flex flex-col ${
+      className={`absolute bg-gray-800/80 text-white rounded-xl shadow-lg flex flex-col border border-gray-600 ${
         isFullScreen ? "w-full h-full" : "w-[800px] h-[600px]"
       }`}
       style={{
         transform: `translate(${position.x}px, ${position.y}px)`,
         transition: "width 0.3s ease-in-out, height 0.3s ease",
+        backdropFilter: "blur(10px)",
       }}
     >
       <MenuBarApp

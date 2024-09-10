@@ -22,7 +22,7 @@ const Dock: React.FC<DockProps> = ({ onOpen }) => {
           onClick={() => onOpen("finder")}
         />
         <DockItem
-          icon="/icons/settings.webp"
+          icon="/icons/setting.webp"
           label="Settings"
           onClick={() => onOpen("settings")}
         />

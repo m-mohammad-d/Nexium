@@ -15,6 +15,7 @@ import MemoryGame from "./components/MemoryGame";
 import DigiKala from "./components/DigiKala";
 import TodoList from "./components/Todolist";
 import ContextMenu from "./components/ContextMenu";
+import SettingsMenu from "./components/Setting";
 
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
@@ -94,6 +95,7 @@ const App: React.FC = () => {
       {windows.memoryGame && <MemoryGame />}
       {windows.digikala && <DigiKala />}
       {windows.todoList && <TodoList />}
+      {windows.settings && <SettingsMenu />}
       {windows.appList && <AppList onOpen={toggleWindow} />}
 
       {/* Dock */}

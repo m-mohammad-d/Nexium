@@ -68,7 +68,7 @@ function TicTocToe(): ReactElement {
   };
 
   return (
-    <DraggableWindow>
+    <DraggableWindow title="tic toc toe">
       <div className="flex flex-col items-center p-4">
         <h1
           className="text-white text-4xl mt-12 flex items-center justify-center"

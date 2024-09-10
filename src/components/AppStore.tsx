@@ -90,7 +90,7 @@ const AppStore: React.FC = () => {
 
   return (
     <DraggableWindow title="App Store">
-      <div className="p-4 bg-gray-900 min-h-screen">
+      <div className="p-4 bg-gray-700 h-full">
         <header className="bg-gray-800 text-white p-4 rounded-t-lg">
           <h1 className="text-3xl font-bold">App Store</h1>
         </header>

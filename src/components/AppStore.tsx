@@ -30,7 +30,7 @@ const defaultApps = [
     isInstalled: false,
   },
   {
-    id: 4,
+    id: 5,
     name: "googleMaps",
     img: "Maps",
     isInstalled: false,

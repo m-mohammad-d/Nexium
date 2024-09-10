@@ -20,10 +20,10 @@ const Calculator: React.FC = () => {
 
   return (
     <DraggableWindow title="Calculator">
-      <div className="flex-1 bg-white flex items-center justify-end text-2xl pr-4">
+      <div className="flex-1 bg-gray-800 text-white flex items-center justify-end text-2xl pr-4">
         {display || "0"}
       </div>
-      <div className="grid grid-cols-4 gap-1 p-2 bg-gray-100">
+      <div className="grid grid-cols-4 gap-1 p-2 bg-gray-700">
         {[
           "7",
           "8",
@@ -44,7 +44,7 @@ const Calculator: React.FC = () => {
         ].map((button) => (
           <button
             key={button}
-            className="bg-white p-4 rounded shadow text-xl hover:bg-gray-200"
+            className="bg-gray-600 p-4 rounded shadow text-xl text-white hover:bg-gray-500"
             onClick={() => handleButtonClick(button)}
           >
             {button}

@@ -69,6 +69,8 @@ const App: React.FC = () => {
   const handleClick = () => {
     setContextMenu({ visible: false, x: 0, y: 0 });
   };
+  console.log(windows);
+  
 
   return (
     <div
@@ -96,6 +98,7 @@ const App: React.FC = () => {
       {windows.digikala && <DigiKala />}
       {windows.todoList && <TodoList />}
       {windows.settings && <SettingsMenu />}
+      
       {windows.appList && <AppList onOpen={toggleWindow} />}
 
       {/* Dock */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, MouseEvent } from "react";
 import Dock from "./components/Dock";
 import Calculator from "./components/Calculator";
 import Chrome from "./components/Chrome";
@@ -14,7 +14,7 @@ import TicTocToe from "./components/TicTocToe";
 import MemoryGame from "./components/MemoryGame";
 import DigiKala from "./components/DigiKala";
 import TodoList from "./components/Todolist";
-
+import ContextMenu from "./components/ContextMenu";
 
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
@@ -23,6 +23,24 @@ const App: React.FC = () => {
     calendar: false,
     appStore: false,
     appList: false,
+    googleMaps: false,
+    wikipedia: false,
+    balad: false,
+    snapp: false,
+    ticTocToe: false,
+    memoryGame: false,
+    digikala: false,
+    todoList: false,
+  });
+
+  const [contextMenu, setContextMenu] = useState<{
+    visible: boolean;
+    x: number;
+    y: number;
+  }>({
+    visible: false,
+    x: 0,
+    y: 0,
   });
 
   const toggleWindow = (windowName: string) => {
@@ -32,10 +50,31 @@ const App: React.FC = () => {
     }));
   };
 
+  const handleContextMenu = (e: MouseEvent) => {
+    e.preventDefault();
+    setContextMenu({
+      visible: true,
+      x: e.clientX,
+      y: e.clientY,
+    });
+  };
+
+  const handleOptionClick = (option: string) => {
+    console.log(option);
+    // Handle menu option clicks
+    setContextMenu({ visible: false, x: 0, y: 0 });
+  };
+
+  const handleClick = () => {
+    setContextMenu({ visible: false, x: 0, y: 0 });
+  };
+
   return (
     <div
       className="h-screen w-full bg-cover bg-no-repeat bg-center"
       style={{ backgroundImage: `url(/bg-1.jpg)` }}
+      onContextMenu={handleContextMenu}
+      onClick={handleClick}
     >
       {/* Menu Bar */}
       <div className="absolute top-0 left-0 w-full">
@@ -48,17 +87,26 @@ const App: React.FC = () => {
       {windows.calendar && <Calendar />}
       {windows.appStore && <AppStore />}
       {windows.googleMaps && <GoogleMaps />}
-      {windows.Wikipedia && <Wikipedia />}
-      {windows.Balad && <Balad />}
-      {windows.Snapp && <Snapp />}
+      {windows.wikipedia && <Wikipedia />}
+      {windows.balad && <Balad />}
+      {windows.snapp && <Snapp />}
       {windows.ticTocToe && <TicTocToe />}
-      {windows.momoryGame && <MemoryGame />}
-      {windows.Digikala && <DigiKala />}
+      {windows.memoryGame && <MemoryGame />}
+      {windows.digikala && <DigiKala />}
       {windows.todoList && <TodoList />}
       {windows.appList && <AppList onOpen={toggleWindow} />}
 
       {/* Dock */}
       <Dock onOpen={toggleWindow} />
+
+      {/* Context Menu */}
+      <ContextMenu
+        visible={contextMenu.visible}
+        x={contextMenu.x}
+        y={contextMenu.y}
+        onClose={() => setContextMenu({ visible: false, x: 0, y: 0 })}
+        onOptionClick={handleOptionClick}
+      />
     </div>
   );
 };

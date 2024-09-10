@@ -41,6 +41,13 @@ const defaultApps = [
     img: "TicTocToe",
     isInstalled: false,
   },
+  {
+    id: 7,
+    name: "momoryGame",
+    img: "memoryGame",
+    isInstalled: false,
+  },
+
 
 ];
 const AppStore: React.FC = () => {

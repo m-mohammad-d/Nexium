@@ -61,7 +61,7 @@ const AppList: React.FC<AppListProps> = ({ onOpen }) => {
 
   return (
     <DraggableWindow title="App List">
-      <div className="h-full w-full text-gray-400 overflow-y-auto bg-gray-700/90">
+      <div className="h-full w-full text-gray-400 overflow-y-auto">
         <ul className="flex flex-wrap p-3">
           {apps.map((app) => (
             <AppListItem

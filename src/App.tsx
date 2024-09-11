@@ -23,7 +23,7 @@ import { WindowContext } from "./context/WindowContext";
 
 const App: React.FC = () => {
   const [formType, setFormType] = useState<string | null>(null);
-  const { windows, toggleWindow, contextMenu, setContextMenu } =
+  const { windows, contextMenu, setContextMenu } =
     useContext(WindowContext);
 
   const handleContextMenu = (e: MouseEvent) => {

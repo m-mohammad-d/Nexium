@@ -4,7 +4,6 @@ import { WindowContext } from "../context/WindowContext";
 
 interface DesktopWorkSpaceProps {
   onSetFormType: (formType: string) => void;
-  onOpen: (name: string) => void;
 }
 
 const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({

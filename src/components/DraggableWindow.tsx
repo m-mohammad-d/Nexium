@@ -1,9 +1,12 @@
-import React, { useState, useRef, MouseEvent } from "react";
+// DraggableWindow.tsx
+import React, { useState, useRef, MouseEvent, ReactNode } from "react";
 import MenuBarApp from "./MenuBarApp";
+import { useContext } from "react";
+import { WindowContext } from "../context/WindowContext";
 
 interface WindowProps {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   initialPosition?: { x: number; y: number };
 }
 
@@ -18,6 +21,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
     initialPosition
   );
   const windowRef = useRef<HTMLDivElement | null>(null);
+  const { toggleWindow } = useContext(WindowContext);
 
   const handleFullScreenToggle = () => {
     setIsFullScreen((prev) => {
@@ -32,7 +36,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
 
   const handleClose = () => {
     if (windowRef.current) {
-      windowRef.current.style.display = "none";
+      toggleWindow(title); // Use toggleWindow to close the window
     }
   };
 

@@ -1,4 +1,5 @@
-import React, { useState, MouseEvent } from "react";
+// App.tsx
+import React, { useContext, MouseEvent, useState } from "react";
 import Calculator from "./components/Calculator";
 import Chrome from "./components/Chrome";
 import MenuBar from "./components/MenuBar";
@@ -18,41 +19,12 @@ import SettingsMenu from "./components/Setting";
 import DesktopWorkSpace from "./components/DesktopWorkSpace";
 import Dock from "./components/Dock";
 import AddForm from "./components/AddForm";
+import { WindowContext } from "./context/WindowContext";
 
 const App: React.FC = () => {
-  const [windows, setWindows] = useState<{ [key: string]: boolean }>({
-    calculator: false,
-    chrome: false,
-    calendar: false,
-    appStore: false,
-    appList: false,
-    googleMaps: false,
-    Wikipedia: false,
-    Balad: false,
-    Snapp: false,
-    ticTocToe: false,
-    momoryGame: false,
-    Digikala: false,
-    todoList: false,
-  });
   const [formType, setFormType] = useState<string | null>(null);
-
-  const [contextMenu, setContextMenu] = useState<{
-    visible: boolean;
-    x: number;
-    y: number;
-  }>({
-    visible: false,
-    x: 0,
-    y: 0,
-  });
-
-  const toggleWindow = (windowName: string) => {
-    setWindows((prevWindows) => ({
-      ...prevWindows,
-      [windowName]: !prevWindows[windowName],
-    }));
-  };
+  const { windows, toggleWindow, contextMenu, setContextMenu } =
+    useContext(WindowContext);
 
   const handleContextMenu = (e: MouseEvent) => {
     e.preventDefault();
@@ -65,14 +37,12 @@ const App: React.FC = () => {
 
   const handleOptionClick = (option: string) => {
     console.log(option);
-    // Handle menu option clicks
     setContextMenu({ visible: false, x: 0, y: 0 });
   };
 
   const handleClick = () => {
     setContextMenu({ visible: false, x: 0, y: 0 });
   };
-  console.log(windows);
 
   return (
     <div
@@ -82,7 +52,7 @@ const App: React.FC = () => {
       onClick={handleClick}
     >
       {/* Menu Bar */}
-      <div className=" w-full">
+      <div className="w-full">
         <MenuBar />
       </div>
 

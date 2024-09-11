@@ -1,5 +1,4 @@
 import React, { useState, MouseEvent } from "react";
-import Dock from "./components/Dock";
 import Calculator from "./components/Calculator";
 import Chrome from "./components/Chrome";
 import MenuBar from "./components/MenuBar";
@@ -16,6 +15,9 @@ import DigiKala from "./components/DigiKala";
 import TodoList from "./components/Todolist";
 import ContextMenu from "./components/ContextMenu";
 import SettingsMenu from "./components/Setting";
+import DesktopWorkSpace from "./components/DesktopWorkSpace";
+import Dock from "./components/Dock";
+import AddForm from "./components/AddForm";
 
 const App: React.FC = () => {
   const [windows, setWindows] = useState<{ [key: string]: boolean }>({
@@ -33,6 +35,7 @@ const App: React.FC = () => {
     Digikala: false,
     todoList: false,
   });
+  const [formType, setFormType] = useState<string | null>(null);
 
   const [contextMenu, setContextMenu] = useState<{
     visible: boolean;
@@ -74,12 +77,12 @@ const App: React.FC = () => {
   return (
     <div
       className="h-screen w-full bg-cover bg-no-repeat bg-center"
-      style={{ backgroundImage: `url(/bg-1.jpg)` }}
+      style={{ backgroundImage: `url(/bg-2.jpg)` }}
       onContextMenu={handleContextMenu}
       onClick={handleClick}
     >
       {/* Menu Bar */}
-      <div className="absolute top-0 left-0 w-full">
+      <div className=" w-full">
         <MenuBar />
       </div>
 
@@ -97,10 +100,10 @@ const App: React.FC = () => {
       {windows.Digikala && <DigiKala />}
       {windows.todoList && <TodoList />}
       {windows.settings && <SettingsMenu />}
-
+      {windows.addForm && <AddForm formType={formType || ""} />}
       {windows.appList && <AppList onOpen={toggleWindow} />}
 
-      {/* Dock */}
+      <DesktopWorkSpace onSetFormType={setFormType} onOpen={toggleWindow} />
       <Dock onOpen={toggleWindow} />
 
       {/* Context Menu */}

@@ -78,7 +78,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
   return (
     <div
       ref={windowRef}
-      className={`absolute bg-gray-800/80 text-white rounded-xl shadow-lg flex flex-col border border-gray-600 ${
+      className={`absolute z-20 bg-gray-800/80 text-white rounded-xl shadow-lg flex flex-col border border-gray-600 ${
         isFullScreen ? "w-full h-full" : "w-[800px] h-[600px]"
       }`}
       style={{

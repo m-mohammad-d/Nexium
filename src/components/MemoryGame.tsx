@@ -31,7 +31,7 @@ const MemoryGame: React.FC = () => {
     flippedIndices.includes(index) || matchedIndices.includes(index);
 
   return (
-    <DraggableWindow title="memory game">
+    <DraggableWindow title="momoryGame">
         <h1 className="text-center text-3xl my-4">welcome to memory game</h1>
       <div className="grid grid-cols-4 gap-2 p-4 max-w-md mx-auto">
         {cards.map((card, index) => (

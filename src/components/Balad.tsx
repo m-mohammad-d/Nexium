@@ -2,7 +2,7 @@ import DraggableWindow from "./DraggableWindow";
 
 function Balad() {
   return (
-    <DraggableWindow title="balad">
+    <DraggableWindow title="Balad">
       <iframe
         src="https://balad.ir/"
         title="balad"

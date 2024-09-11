@@ -53,7 +53,7 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <DraggableWindow title="Calendar">
+    <DraggableWindow title="calendar">
       <div className="w-full h-full mx-auto p-4 bg-gray-800 text-white shadow-lg rounded-lg">
         <div className="flex justify-between items-center mb-4">
           <button

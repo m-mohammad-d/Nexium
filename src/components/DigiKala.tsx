@@ -2,7 +2,7 @@ import DraggableWindow from "./DraggableWindow";
 
 function DigiKala() {
   return (
-    <DraggableWindow title="digikala">
+    <DraggableWindow title="Digikala">
       <iframe
         src="https://www.digikala.com"
         title="Google Search"

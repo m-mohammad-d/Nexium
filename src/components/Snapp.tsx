@@ -2,7 +2,7 @@ import DraggableWindow from "./DraggableWindow";
 
 function Snapp() {
   return (
-    <DraggableWindow title="snapp">
+    <DraggableWindow title="Snapp">
       <iframe
         src="https://app.snapp.taxi/"
         title="snapp"

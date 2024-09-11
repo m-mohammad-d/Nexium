@@ -3,7 +3,7 @@ import DraggableWindow from "./DraggableWindow";
 
 const Chrome: React.FC = () => {
   return (
-    <DraggableWindow title="Chrome">
+    <DraggableWindow title="chrome">
       <iframe
         src="https://www.google.com/webhp?igu=1"
         title="Google Search"

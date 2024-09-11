@@ -2,7 +2,7 @@ import DraggableWindow from "./DraggableWindow";
 
 function Wikipedia() {
   return (
-    <DraggableWindow title="wikipedia">
+    <DraggableWindow title="Wikipedia">
       <iframe
         src="https://www.wikipedia.org/"
         title="wikipedia"

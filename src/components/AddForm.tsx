@@ -30,7 +30,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
   };
 
   return (
-    <DraggableWindow title="Add">
+    <DraggableWindow title="addForm">
       <div className="h-full w-full text-gray-400 overflow-y-auto p-3 bg-gray-700/70">
         <form onSubmit={handleSubmit}>
           {formType === "Add Image" && (

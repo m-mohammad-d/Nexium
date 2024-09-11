@@ -47,7 +47,7 @@ const TodoList: React.FC = () => {
   };
 
   return (
-    <DraggableWindow title="Todo List">
+    <DraggableWindow title="todoList">
       <div className="h-full bg-gray-900 text-white flex flex-col items-center p-4">
         <h1 className="text-2xl font-bold mb-4">Todo List</h1>
         <div className="w-full max-w-md bg-gray-800 p-4 rounded shadow">

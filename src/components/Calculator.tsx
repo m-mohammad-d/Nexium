@@ -19,7 +19,7 @@ const Calculator: React.FC = () => {
   };
 
   return (
-    <DraggableWindow title="Calculator">
+    <DraggableWindow title="calculator">
       <div className="flex-1 bg-gray-800 text-white flex items-center justify-end text-2xl pr-4">
         {display || "0"}
       </div>

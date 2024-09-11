@@ -30,7 +30,7 @@ const SettingsMenu: React.FC = () => {
 
   return (
     <DraggableWindow
-      title="Settings"
+      title="settings"
     >
       <ul className="py-3 px-5">
         <li className="flex justify-between items-center border-b border-black/25 py-2 last:border-0">

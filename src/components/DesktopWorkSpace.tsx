@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { BsPlusCircleDotted } from "react-icons/bs";
+import { WindowContext } from "../context/WindowContext";
 
 interface DesktopWorkSpaceProps {
   onSetFormType: (formType: string) => void;
@@ -8,8 +9,8 @@ interface DesktopWorkSpaceProps {
 
 const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
   onSetFormType,
-  onOpen,
 }) => {
+  const { toggleWindow } = useContext(WindowContext);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -19,7 +20,7 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
 
   const handleMenuOptionClick = (option: string) => {
     onSetFormType(option);
-    onOpen("addForm");
+    toggleWindow("addForm");
     setIsMenuOpen(false); // Close the menu after an option is clicked
   };
 

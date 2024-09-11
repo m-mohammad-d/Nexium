@@ -1,6 +1,7 @@
 // context/WindowContext.tsx
 import React, { createContext, useState, ReactNode } from "react";
 
+
 interface ContextProps {
   windows: { [key: string]: boolean };
   toggleWindow: (windowName: string) => void;
@@ -40,6 +41,7 @@ export const WindowProvider: React.FC<{ children: ReactNode }> = ({
     todoList: false,
     addForm: false,
     settings: false,
+    imageViewer: false,
   });
 
   const [contextMenu, setContextMenu] = useState<{

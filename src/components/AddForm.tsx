@@ -8,11 +8,10 @@ interface AddFormProps {
 const AddForm: React.FC<AddFormProps> = ({ formType }) => {
   const [name, setName] = useState("");
   const [src, setSrc] = useState("");
-  const [path, setPath] = useState("/Desktop");
+  const [path, setPath] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     const formData = {
       name,
       src,
@@ -25,9 +24,10 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
     data.push(formData);
     localStorage.setItem("files", JSON.stringify(data));
 
+    // Reset form fields
     setName("");
     setSrc("");
-    setPath("/Desktop"); // Reset the path as well
+    setPath("");
   };
 
   return (

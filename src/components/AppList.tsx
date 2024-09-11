@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AppListItem from "./AppListItem";
 import DraggableWindow from "./DraggableWindow";
 import { App } from "../types/AppTypes";
 import { saveAppsToLocalStorage, updateAppList } from "../utils/Apputils";
+import { WindowContext } from "../context/WindowContext";
 
-// TypeScript type for the CustomEvent detail
-interface AppListUpdatedEvent extends CustomEvent {
+
+// Define the custom event type for app list updates
+export interface AppListUpdatedEvent extends CustomEvent {
   detail: App[];
 }
+const AppList: React.FC = () => {
+  const { toggleWindow } = useContext(WindowContext);
 
-interface AppListProps {
-  onOpen: (appName: string) => void;
-}
-
-const AppList: React.FC<AppListProps> = ({ onOpen }) => {
   const [apps, setApps] = useState<App[]>([]);
   const [selectedAppId, setSelectedAppId] = useState<number | null>(null);
 
@@ -56,7 +55,7 @@ const AppList: React.FC<AppListProps> = ({ onOpen }) => {
   };
 
   const handleOpenWindow = (appName: string) => {
-    onOpen(appName); // Pass the app name to the onOpen callback
+    toggleWindow(appName); // Pass the app name to the onOpen callback
   };
 
   return (

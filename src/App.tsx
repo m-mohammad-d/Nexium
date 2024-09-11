@@ -71,10 +71,10 @@ const App: React.FC = () => {
       {windows.todoList && <TodoList />}
       {windows.settings && <SettingsMenu />}
       {windows.addForm && <AddForm formType={formType || ""} />}
-      {windows.appList && <AppList onOpen={toggleWindow} />}
+      {windows.appList && <AppList  />}
 
-      <DesktopWorkSpace onSetFormType={setFormType} onOpen={toggleWindow} />
-      <Dock onOpen={toggleWindow} />
+      <DesktopWorkSpace onSetFormType={setFormType}  />
+      <Dock />
 
       {/* Context Menu */}
       <ContextMenu

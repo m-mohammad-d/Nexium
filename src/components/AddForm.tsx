@@ -17,6 +17,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
       name,
       src,
       path,
+      type: formType,
     };
 
     const storedData = localStorage.getItem("files");
@@ -33,7 +34,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
     <DraggableWindow title="addForm">
       <div className="h-full w-full text-gray-400 overflow-y-auto p-3 bg-gray-700/70">
         <form onSubmit={handleSubmit}>
-          {formType === "Add Image" && (
+          {formType === "Image" && (
             <>
               <div className="mb-2">
                 <label htmlFor="id-name" className="block text-xs mb-1">
@@ -65,7 +66,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
             </>
           )}
 
-          {formType === "Add Folder" && (
+          {formType === "Folder" && (
             <>
               <div className="mb-2">
                 <label htmlFor="id-name" className="block text-xs mb-1">
@@ -97,7 +98,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
             </>
           )}
 
-          {formType === "Add Text" && (
+          {formType === "Text" && (
             <>
               <div className="mb-2">
                 <label htmlFor="id-name" className="block text-xs mb-1">

@@ -1,9 +1,17 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { BsPlusCircleDotted } from "react-icons/bs";
 import { WindowContext } from "../context/WindowContext";
+import AddMenuOptions from "./AddMenuOptions";
 
 interface DesktopWorkSpaceProps {
   onSetFormType: (formType: string) => void;
+}
+
+interface FileItem {
+  id: number;
+  name: string;
+  type: string;
+  src?: string; // URL for image files
 }
 
 const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
@@ -11,6 +19,7 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
 }) => {
   const { toggleWindow } = useContext(WindowContext);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [files, setFiles] = useState<FileItem[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const handleAddClick = () => {
@@ -23,13 +32,20 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
     setIsMenuOpen(false); // Close the menu after an option is clicked
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOutside: EventListener = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
       setIsMenuOpen(false);
     }
   };
 
   useEffect(() => {
+    // Read files from localStorage
+    const storedFiles: FileItem[] = JSON.parse(
+      localStorage.getItem("files") || "[]"
+    );
+    setFiles(storedFiles);
+
+    // Add event listener for click outside
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -48,39 +64,33 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
             <span className="text-xs mt-1.5 text-white">Add</span>
           </button>
         </li>
+        {files.map((file) => (
+          <li key={file.id} className="p-3">
+            <button className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100">
+              {file.type === "Image" && file.src ? (
+                <img
+                  src={file.src}
+                  alt={file.name}
+                  className="w-16 h-16 object-cover rounded-md"
+                />
+              ) : file.type === "Folder" ? (
+                <img src="public/icons/folder.png" alt="folder" />
+              ) : file.type === "Text" ? (
+                <img
+                  src="public/icons/note.png"
+                  alt="text"
+                  className="w-16 h-16 object-cover rounded-md"
+                />
+              ) : null}
+              <span className="text-xs mt-1.5 text-white">{file.name}</span>
+            </button>
+          </li>
+        ))}
       </ul>
 
       {isMenuOpen && (
-        <div
-          ref={menuRef}
-          className="absolute top-12 left-3 bg-white border border-gray-300 rounded-lg shadow-lg w-48 overflow-hidden transition-transform transform scale-100 origin-top-left"
-        >
-          <ul className="text-gray-800">
-            <li className="border-b border-gray-300 last:border-0">
-              <button
-                onClick={() => handleMenuOptionClick("Add Folder")}
-                className="text-sm p-2 hover:bg-gray-200 block text-center w-full"
-              >
-                Add Folder
-              </button>
-            </li>
-            <li className="border-b border-gray-300 last:border-0">
-              <button
-                onClick={() => handleMenuOptionClick("Add Image")}
-                className="text-sm p-2 hover:bg-gray-200 block text-center w-full"
-              >
-                Add Image
-              </button>
-            </li>
-            <li className="border-b border-gray-300 last:border-0">
-              <button
-                onClick={() => handleMenuOptionClick("Add Text")}
-                className="text-sm p-2 hover:bg-gray-200 block text-center w-full"
-              >
-                Add Text
-              </button>
-            </li>
-          </ul>
+        <div ref={menuRef}>
+          <AddMenuOptions onMenuOptionClick={handleMenuOptionClick} />
         </div>
       )}
       {/* Render the form based on the selected option */}

@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import DockItem from "./DockItem";
+import { WindowContext } from "../context/WindowContext";
 
-interface DockProps {
-  onOpen: (windowName: string) => void;
-}
+const Dock: React.FC = () => {
+  const { toggleWindow } = useContext(WindowContext);
 
-const Dock: React.FC<DockProps> = ({ onOpen }) => {
   return (
     <div className="fixed bottom-0 inset-x-0 flex justify-center py-2 px-4">
       <div
@@ -19,42 +18,42 @@ const Dock: React.FC<DockProps> = ({ onOpen }) => {
         <DockItem
           icon="/icons/finder.webp"
           label="Finder"
-          onClick={() => onOpen("finder")}
+          onClick={() => toggleWindow("finder")}
         />
         <DockItem
           icon="/icons/setting.webp"
           label="Settings"
-          onClick={() => onOpen("settings")}
+          onClick={() => toggleWindow("settings")}
         />
         <DockItem
           icon="/icons/chrome.webp"
           label="Chrome"
-          onClick={() => onOpen("chrome")}
+          onClick={() => toggleWindow("chrome")}
         />
         <DockItem
           icon="/icons/calender.webp"
           label="Calendar"
-          onClick={() => onOpen("calendar")}
+          onClick={() => toggleWindow("calendar")}
         />
         <DockItem
           icon="/icons/calculator.webp"
           label="Calculator"
-          onClick={() => onOpen("calculator")}
+          onClick={() => toggleWindow("calculator")}
         />
         <DockItem
           icon="/icons/photos.webp"
           label="Photos"
-          onClick={() => onOpen("photos")}
+          onClick={() => toggleWindow("photos")}
         />
         <DockItem
           icon="/icons/app-store.webp"
           label="appSotre"
-          onClick={() => onOpen("appStore")}
+          onClick={() => toggleWindow("appStore")}
         />
         <DockItem
           icon="/icons/more-application.png"
           label="more application"
-          onClick={() => onOpen("appList")}
+          onClick={() => toggleWindow("appList")}
         />
       </div>
     </div>

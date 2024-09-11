@@ -20,6 +20,7 @@ import DesktopWorkSpace from "./components/DesktopWorkSpace";
 import Dock from "./components/Dock";
 import AddForm from "./components/AddForm";
 import { WindowContext } from "./context/WindowContext";
+import ImageViewer from "./components/ImageViewer";
 
 const App: React.FC = () => {
   const [formType, setFormType] = useState<string | null>(null);
@@ -70,6 +71,7 @@ const App: React.FC = () => {
       {windows.Digikala && <DigiKala />}
       {windows.todoList && <TodoList />}
       {windows.settings && <SettingsMenu />}
+      {windows.imageViewer && <ImageViewer />}
       {windows.addForm && <AddForm formType={formType || ""} />}
       {windows.appList && <AppList  />}
 

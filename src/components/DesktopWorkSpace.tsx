@@ -1,51 +1,42 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { BsPlusCircleDotted } from "react-icons/bs";
 import { WindowContext } from "../context/WindowContext";
+import { FileContext } from "../context/FileContext";
 import AddMenuOptions from "./AddMenuOptions";
 
 interface DesktopWorkSpaceProps {
   onSetFormType: (formType: string) => void;
 }
 
-interface FileItem {
-  id: number;
-  name: string;
-  type: string;
-  src?: string; // URL for image files
-}
-
 const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
   onSetFormType,
 }) => {
-  const { toggleWindow } = useContext(WindowContext);
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [files, setFiles] = useState<FileItem[]>([]);
+  const { toggleWindow } = useContext(WindowContext)!;
+  const { files, setActiveImage } = useContext(FileContext)!;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const handleAddClick = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const handleAddClick = () => setIsMenuOpen((prev) => !prev);
 
   const handleMenuOptionClick = (option: string) => {
     onSetFormType(option);
     toggleWindow("addForm");
-    setIsMenuOpen(false); // Close the menu after an option is clicked
+    setIsMenuOpen(false);
   };
 
-  const handleClickOutside: EventListener = (event) => {
+  const handleImageView = (image: string) => {
+    setActiveImage(image);
+    toggleWindow("imageViewer");
+    setIsMenuOpen(false);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
       setIsMenuOpen(false);
     }
   };
 
   useEffect(() => {
-    // Read files from localStorage
-    const storedFiles: FileItem[] = JSON.parse(
-      localStorage.getItem("files") || "[]"
-    );
-    setFiles(storedFiles);
-
-    // Add event listener for click outside
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -66,34 +57,33 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
         </li>
         {files.map((file) => (
           <li key={file.id} className="p-3">
-            <button className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100">
-              {file.type === "Image" && file.src ? (
+            {file.type === "Image" && file.src ? (
+              <button className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100">
                 <img
                   src={file.src}
                   alt={file.name}
                   className="w-16 h-16 object-cover rounded-md"
+                  onClick={() => handleImageView(file.src || "")}
                 />
-              ) : file.type === "Folder" ? (
-                <img src="public/icons/folder.png" alt="folder" />
-              ) : file.type === "Text" ? (
-                <img
-                  src="public/icons/note.png"
-                  alt="text"
-                  className="w-16 h-16 object-cover rounded-md"
-                />
-              ) : null}
-              <span className="text-xs mt-1.5 text-white">{file.name}</span>
-            </button>
+                <span className="text-xs mt-1.5 text-white">{file.name}</span>
+              </button>
+            ) : file.type === "Folder" ? (
+              <img src="/icons/folder.png" alt="Folder" className="w-16 h-16" />
+            ) : file.type === "Text" ? (
+              <img
+                src="/icons/note.png"
+                alt="Text"
+                className="w-16 h-16 object-cover rounded-md"
+              />
+            ) : null}
           </li>
         ))}
       </ul>
-
       {isMenuOpen && (
         <div ref={menuRef}>
           <AddMenuOptions onMenuOptionClick={handleMenuOptionClick} />
         </div>
       )}
-      {/* Render the form based on the selected option */}
     </div>
   );
 };

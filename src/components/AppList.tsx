@@ -8,6 +8,7 @@ import { WindowContext } from "../context/WindowContext";
 const defaultApp = [
   { name: "sourceCode", img: "github" },
   { name: "Contact Me", img: "telegram" },
+  { name: "Wallpaper", img: "ventora" },
 ];
 
 // Define the custom event type for app list updates
@@ -67,20 +68,24 @@ const AppList: React.FC = () => {
     <DraggableWindow title="appList">
       <div className="h-full w-full text-gray-400 overflow-y-auto">
         <ul className="flex flex-wrap p-3">
-          {defaultApp.map((app) => (
-            <AppListItem
-              key={app.name} // Use a unique key for default apps
-              app={app}
-              onClick={() => {
-                window.open(
-                  app.name === "sourceCode"
-                    ? "https://github.com/m-mohammad-d/Nexium"
-                    : "https://t.me/silver_shade1"
-                );
-              }}
-              isDefault={true} // Mark as default
-            />
-          ))}
+          <AppListItem
+            app={defaultApp[0]}
+            onClick={() => {
+              window.open("https://github.com/m-mohammad-d/Nexium");
+            }}
+          />
+          <AppListItem
+            app={defaultApp[1]}
+            onClick={() => {
+              window.open("https://t.me/silver_shade1");
+            }}
+          />
+          <AppListItem
+            app={defaultApp[2]}
+            onClick={() => {
+              handleOpenWindow("Wallpaper");
+            }}
+          />
           {apps.map((app) => (
             <AppListItem
               key={app.id}

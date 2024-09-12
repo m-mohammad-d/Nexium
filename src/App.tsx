@@ -1,5 +1,5 @@
-// App.tsx
 import React, { useContext, MouseEvent, useState } from "react";
+import { useWallpaper } from "./context/WallpaperContext"; // Import the hook
 import Calculator from "./components/Calculator";
 import Chrome from "./components/Chrome";
 import MenuBar from "./components/MenuBar";
@@ -21,11 +21,13 @@ import Dock from "./components/Dock";
 import AddForm from "./components/AddForm";
 import { WindowContext } from "./context/WindowContext";
 import ImageViewer from "./components/ImageViewer";
+import Wallpaper from "./components/wallpaper";
 
 const App: React.FC = () => {
   const [formType, setFormType] = useState<string | null>(null);
   const { windows, contextMenu, setContextMenu, toggleWindow } =
     useContext(WindowContext);
+  const { background } = useWallpaper(); // Use the context
 
   const handleContextMenu = (e: MouseEvent) => {
     e.preventDefault();
@@ -39,8 +41,6 @@ const App: React.FC = () => {
   const handleOptionClick = (option: string) => {
     if (option === "openNewWindow") {
       const currentUrl = window.location.href;
-
-      // Open the current URL in a new window or tab
       window.open(currentUrl, "_blank");
     } else if (option === "refresh") {
       location.reload();
@@ -49,7 +49,7 @@ const App: React.FC = () => {
     } else if (option === "Full Screen") {
       document.documentElement.requestFullscreen();
     } else if (option === "exit") {
-      window.close()
+      window.close();
     }
     console.log(option);
     setContextMenu({ visible: false, x: 0, y: 0 });
@@ -62,7 +62,7 @@ const App: React.FC = () => {
   return (
     <div
       className="h-screen w-full bg-cover bg-no-repeat bg-center"
-      style={{ backgroundImage: `url(/bg-2.jpg)` }}
+      style={{ backgroundImage: `url(/background/${background}.jpg)` }} // Use background from context
       onContextMenu={handleContextMenu}
       onClick={handleClick}
     >
@@ -86,6 +86,7 @@ const App: React.FC = () => {
       {windows.todoList && <TodoList />}
       {windows.settings && <SettingsMenu />}
       {windows.imageViewer && <ImageViewer />}
+      {windows.Wallpaper && <Wallpaper />}
       {windows.addForm && <AddForm formType={formType || ""} />}
       {windows.appList && <AppList />}
 

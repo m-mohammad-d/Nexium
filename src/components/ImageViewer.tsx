@@ -19,7 +19,7 @@ const ImageViewer: React.FC = () => {
   );
 
   return (
-    <DraggableWindow title="Image Viewer">
+    <DraggableWindow title="imageViewer">
       <div className="p-4 bg-gray-900/90 text-white h-full flex flex-col rounded-md shadow-lg">
         <div className="flex-grow h-96 overflow-hidden flex items-center justify-center bg-black/60 rounded-md mb-4">
           {activeImage ? (

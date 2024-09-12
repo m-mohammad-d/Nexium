@@ -19,7 +19,7 @@ const MenuBar: React.FC = () => {
       <div className="flex justify-between items-center w-full">
         {/* Left side */}
         <div className="flex items-center space-x-6">
-          <span className="Nexium text-lg font-bold">Nexium</span>
+          <span className="Nexium tracking-[4px] text-lg font-bold">Nexium</span>
         </div>
 
         {/* Center */}

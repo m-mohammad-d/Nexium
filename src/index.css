@@ -5,9 +5,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: url("../public/courser/courser.svg"), auto; 
+  cursor: url("../public/courser/courser.svg"), auto;
 }
 body {
   overflow: hidden;
   font-family: Inter, sans-serif;
+  user-select: none;
 }

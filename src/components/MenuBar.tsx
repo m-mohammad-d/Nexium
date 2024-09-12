@@ -19,7 +19,7 @@ const MenuBar: React.FC = () => {
       <div className="flex justify-between items-center w-full">
         {/* Left side */}
         <div className="flex items-center space-x-6">
-          <span className="text-lg font-bold">Nexium</span>
+          <span className="Nexium text-lg font-bold">Nexium</span>
         </div>
 
         {/* Center */}
@@ -31,14 +31,10 @@ const MenuBar: React.FC = () => {
 
         {/* Right side */}
         <div className="flex items-center space-x-6">
-          <span
-            className="font-bold text-xl cursor-pointer hover:text-gray-300 transition duration-300"
-            onClick={() => {
-              /* Handle logo click if needed */
-            }}
-          >
-            
-          </span>
+          <img
+            src="/public/logo.png"
+            className="font-bold h-10 w-10 text-xl cursor-pointer hover:text-gray-300 transition duration-300"
+          />
         </div>
       </div>
     </div>

@@ -24,8 +24,7 @@ import ImageViewer from "./components/ImageViewer";
 
 const App: React.FC = () => {
   const [formType, setFormType] = useState<string | null>(null);
-  const { windows, contextMenu, setContextMenu } =
-    useContext(WindowContext);
+  const { windows, contextMenu, setContextMenu } = useContext(WindowContext);
 
   const handleContextMenu = (e: MouseEvent) => {
     e.preventDefault();
@@ -73,9 +72,9 @@ const App: React.FC = () => {
       {windows.settings && <SettingsMenu />}
       {windows.imageViewer && <ImageViewer />}
       {windows.addForm && <AddForm formType={formType || ""} />}
-      {windows.appList && <AppList  />}
+      {windows.appList && <AppList />}
 
-      <DesktopWorkSpace onSetFormType={setFormType}  />
+      <DesktopWorkSpace onSetFormType={setFormType} />
       <Dock />
 
       {/* Context Menu */}

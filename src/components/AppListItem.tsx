@@ -3,15 +3,17 @@ import { App } from "../types/AppTypes";
 
 interface AppListItemProps {
   app: App;
-  onDelete: (id: number) => void;
-  isSelected: boolean;
+  onDelete?: (id: number) => void;
+  isSelected?: boolean;
   onClick: () => void;
+  isDefault?: boolean; // Add isDefault prop
 }
 
 const AppListItem: React.FC<AppListItemProps> = ({
   app,
   onDelete,
   onClick,
+  isDefault = false, // Default to false
 }) => {
   const [showDelete, setShowDelete] = useState<boolean>(false);
 
@@ -34,12 +36,12 @@ const AppListItem: React.FC<AppListItemProps> = ({
           className="w-10 h-10 rounded-md"
         />
         <span className="text-gray-400 mt-2">{app.name}</span>
-        {showDelete && (
+        {!isDefault && showDelete && (
           <button
             onClick={(e) => {
               e.stopPropagation();
               setShowDelete(false); // Hide the delete button after clicking
-              onDelete(app.id);
+              onDelete?.(app.id || 0);
             }}
             className="absolute -bottom-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full shadow-md hover:bg-red-600"
           >

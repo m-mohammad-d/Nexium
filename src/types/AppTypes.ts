@@ -1,6 +1,6 @@
 export interface App {
-  id: number;
+  id?: number;
   name: string;
   img: string;
-  isInstalled: boolean;
+  isInstalled?: boolean;
 }

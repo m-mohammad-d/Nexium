@@ -5,11 +5,16 @@ import { App } from "../types/AppTypes";
 import { saveAppsToLocalStorage, updateAppList } from "../utils/Apputils";
 import { WindowContext } from "../context/WindowContext";
 
+const defaultApp = [
+  { name: "sourceCode", img: "github" },
+  { name: "Contact Me", img: "telegram" },
+];
 
 // Define the custom event type for app list updates
 export interface AppListUpdatedEvent extends CustomEvent {
   detail: App[];
 }
+
 const AppList: React.FC = () => {
   const { toggleWindow } = useContext(WindowContext);
 
@@ -62,6 +67,20 @@ const AppList: React.FC = () => {
     <DraggableWindow title="appList">
       <div className="h-full w-full text-gray-400 overflow-y-auto">
         <ul className="flex flex-wrap p-3">
+          {defaultApp.map((app) => (
+            <AppListItem
+              key={app.name} // Use a unique key for default apps
+              app={app}
+              onClick={() => {
+                window.open(
+                  app.name === "sourceCode"
+                    ? "https://github.com/m-mohammad-d/Nexium"
+                    : "https://t.me/silver_shade1"
+                );
+              }}
+              isDefault={true} // Mark as default
+            />
+          ))}
           {apps.map((app) => (
             <AppListItem
               key={app.id}
@@ -69,7 +88,7 @@ const AppList: React.FC = () => {
               onDelete={handleDelete}
               isSelected={app.id === selectedAppId}
               onClick={() => {
-                setSelectedAppId(app.id);
+                setSelectedAppId(app.id || 0);
                 handleOpenWindow(app.name); // Pass the app's name to handleOpenWindow
               }}
             />

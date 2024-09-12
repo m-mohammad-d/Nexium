@@ -70,18 +70,21 @@ const AppList: React.FC = () => {
         <ul className="flex flex-wrap p-3">
           <AppListItem
             app={defaultApp[0]}
+            isDefault={true}
             onClick={() => {
               window.open("https://github.com/m-mohammad-d/Nexium");
             }}
           />
           <AppListItem
             app={defaultApp[1]}
+            isDefault={true}
             onClick={() => {
               window.open("https://t.me/silver_shade1");
             }}
           />
           <AppListItem
             app={defaultApp[2]}
+            isDefault={true}
             onClick={() => {
               handleOpenWindow("Wallpaper");
             }}

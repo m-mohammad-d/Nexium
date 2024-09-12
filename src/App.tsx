@@ -24,7 +24,8 @@ import ImageViewer from "./components/ImageViewer";
 
 const App: React.FC = () => {
   const [formType, setFormType] = useState<string | null>(null);
-  const { windows, contextMenu, setContextMenu } = useContext(WindowContext);
+  const { windows, contextMenu, setContextMenu, toggleWindow } =
+    useContext(WindowContext);
 
   const handleContextMenu = (e: MouseEvent) => {
     e.preventDefault();
@@ -36,6 +37,20 @@ const App: React.FC = () => {
   };
 
   const handleOptionClick = (option: string) => {
+    if (option === "openNewWindow") {
+      const currentUrl = window.location.href;
+
+      // Open the current URL in a new window or tab
+      window.open(currentUrl, "_blank");
+    } else if (option === "refresh") {
+      location.reload();
+    } else if (option === "settings") {
+      toggleWindow("settings");
+    } else if (option === "Full Screen") {
+      document.documentElement.requestFullscreen();
+    } else if (option === "exit") {
+      window.close()
+    }
     console.log(option);
     setContextMenu({ visible: false, x: 0, y: 0 });
   };

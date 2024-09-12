@@ -44,9 +44,15 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
         </li>
         <li
           className="p-2 hover:bg-gray-100 cursor-pointer"
-          onClick={() => onOptionClick("help")}
+          onClick={() => onOptionClick("Full Screen")}
         >
-          Help
+          Full Screen
+        </li>
+        <li
+          className="p-2 hover:bg-gray-100 cursor-pointer"
+          onClick={() => onOptionClick("exit")}
+        >
+          exit
         </li>
       </ul>
     </div>

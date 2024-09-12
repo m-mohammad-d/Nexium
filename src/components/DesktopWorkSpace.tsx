@@ -68,13 +68,23 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
                 <span className="text-xs mt-1.5 text-white">{file.name}</span>
               </button>
             ) : file.type === "Folder" ? (
-              <img src="/icons/folder.png" alt="Folder" className="w-16 h-16" />
+              <button className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100">
+                <img
+                  src="public/icons/Folder.png"
+                  alt={file.name}
+                  className="w-16 h-16 object-cover rounded-md"
+                />
+                <span className="text-xs mt-1.5 text-white">{file.name}</span>
+              </button>
             ) : file.type === "Text" ? (
-              <img
-                src="/icons/note.png"
-                alt="Text"
-                className="w-16 h-16 object-cover rounded-md"
-              />
+              <button className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100">
+                <img
+                  src="public/icons/note.png"
+                  alt={file.name}
+                  className="w-16 h-16 object-cover rounded-md"
+                />
+                <span className="text-xs mt-1.5 text-white">{file.name}</span>
+              </button>
             ) : null}
           </li>
         ))}

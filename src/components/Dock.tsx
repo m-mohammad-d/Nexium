@@ -41,9 +41,9 @@ const Dock: React.FC = () => {
           onClick={() => toggleWindow("calculator")}
         />
         <DockItem
-          icon="/icons/photos.webp"
+          icon="/icons/gallary.webp"
           label="Photos"
-          onClick={() => toggleWindow("photos")}
+          onClick={() => toggleWindow("imageViewer")}
         />
         <DockItem
           icon="/icons/app-store.webp"

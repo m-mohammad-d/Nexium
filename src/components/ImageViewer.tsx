@@ -1,6 +1,11 @@
 import React, { useContext, useCallback } from "react";
 import { FileContext } from "../context/FileContext";
 import DraggableWindow from "./DraggableWindow";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 
 const ImageViewer: React.FC = () => {
   const { files, activeImage, setActiveImage } = useContext(FileContext)!;
@@ -14,32 +19,34 @@ const ImageViewer: React.FC = () => {
   );
 
   return (
-    <DraggableWindow title="imageViewer">
-      <div className="p-4 bg-gray-900/90 text-white h-full flex flex-col">
-        <div className="flex-grow overflow-hidden flex items-center justify-center">
+    <DraggableWindow title="Image Viewer">
+      <div className="p-4 bg-gray-900/90 text-white h-full flex flex-col rounded-md shadow-lg">
+        <div className="flex-grow h-96 overflow-hidden flex items-center justify-center bg-black/60 rounded-md mb-4">
           {activeImage ? (
             <img
-              className="w-96 h-96 object-cover object-center shadow-lg" // Fixed width and height for the active image
+              className="object-cover object-center max-h-full transition-transform duration-300 hover:scale-105 shadow-lg rounded-md"
               src={activeImage}
               alt="Active View"
             />
           ) : (
-            <p>No image selected</p>
+            <p className="text-center text-gray-400">No image selected</p>
           )}
         </div>
-        <div className="mt-4 grid grid-cols-7 gap-2 overflow-auto">
-          {files
-            .filter((file) => file.type === "Image")
-            .map((file) => (
-              <div key={file.id} className="relative">
-                <img
-                  onClick={() => handleImageClick(file.src || "")}
-                  src={file.src || ""}
-                  className="h-20 w-24 max-w-full cursor-pointer rounded-lg object-cover object-center border-2 border-transparent hover:border-blue-500 transition duration-300"
-                  alt={`gallery-image-${file.id}`}
-                />
-              </div>
-            ))}
+        <div className="my-8">
+          <Swiper spaceBetween={15} slidesPerView={10} className="p-6">
+            {files
+              .filter((file) => file.type === "Image")
+              .map((file) => (
+                <SwiperSlide key={file.id}>
+                  <img
+                    onClick={() => handleImageClick(file.src || "")}
+                    src={file.src || ""}
+                    className="h-20 w-24 cursor-pointer rounded-lg object-cover object-center border-2 border-transparent hover:border-blue-500 transition duration-300 transform hover:scale-110"
+                    alt={`gallery-image-${file.id}`}
+                  />
+                </SwiperSlide>
+              ))}
+          </Swiper>
         </div>
       </div>
     </DraggableWindow>

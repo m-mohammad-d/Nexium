@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import DraggableWindow from "./DraggableWindow";
+import { FileContext } from "../context/FileContext";
 
 interface AddFormProps {
   formType: string;
@@ -10,20 +11,24 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
   const [src, setSrc] = useState("");
   const [path, setPath] = useState("/desktop");
 
+  // Use FileContext to set files
+  const { setFiles } = useContext(FileContext)!;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = {
+      id: Date.now(), // Give a unique ID
       name,
       src,
       path,
-      text: formType === "Text" ? "" : undefined, // Save an empty string for text files initially
+      text: formType === "Text" ? "" : undefined,
       type: formType,
     };
 
-    const storedData = localStorage.getItem("files");
-    const data = storedData ? JSON.parse(storedData) : [];
-    data.push(formData);
-    localStorage.setItem("files", JSON.stringify(data));
+    // Update files using context
+    setFiles((prevFiles) => [...prevFiles, formData]);
+
+
 
     // Reset form fields
     setName("");

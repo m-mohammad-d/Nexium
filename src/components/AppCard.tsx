@@ -22,7 +22,7 @@ const AppCard: React.FC<AppCardProps> = ({ app, onInstall, onUninstall }) => (
       {!app.isInstalled ? (
         <li className="px-1">
           <button
-            onClick={() => onInstall(app.id)}
+            onClick={() => app.id != null && onInstall(app.id)}
             className="flex justify-center items-center py-1 px-3 rounded-md transition-colors bg-green-500 hover:bg-green-600 text-white"
           >
             <FaDownload className="mr-1" /> Install
@@ -31,7 +31,7 @@ const AppCard: React.FC<AppCardProps> = ({ app, onInstall, onUninstall }) => (
       ) : (
         <li className="px-1">
           <button
-            onClick={() => onUninstall(app.id)}
+            onClick={() => app.id != null && onUninstall(app.id)}
             className="flex justify-center items-center py-1 px-3 rounded-md transition-colors bg-red-500 hover:bg-red-600 text-white"
           >
             <FaTrashAlt className="mr-1" /> Uninstall

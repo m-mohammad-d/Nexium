@@ -34,7 +34,7 @@ const Wallpaper: React.FC = () => {
               onClick={() => changeBackground(image)}
             >
               <img
-                src={`public/background/${image}.jpg`} // Replace with the actual path to your images
+                src={`/background/${image}.jpg`} // Replace with the actual path to your images
                 alt={image}
                 className="h-24 w-24 object-cover rounded-lg"
               />

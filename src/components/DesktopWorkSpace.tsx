@@ -83,7 +83,7 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
             ) : file.type === "Folder" ? (
               <button className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100">
                 <img
-                  src="public/icons/Folder.png"
+                  src="/icons/Folder.png"
                   alt={file.name}
                   className="w-16 h-16 object-cover rounded-md"
                 />
@@ -95,7 +95,7 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
                 className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100"
               >
                 <img
-                  src="public/icons/note.png"
+                  src="/icons/note.png"
                   alt={file.name}
                   className="w-16 h-16 object-cover rounded-md"
                 />

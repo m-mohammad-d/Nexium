@@ -32,7 +32,7 @@ const MenuBar: React.FC = () => {
         {/* Right side */}
         <div className="flex items-center space-x-6">
           <img
-            src="/public/logo.png"
+            src="/logo.png"
             className="font-bold h-10 w-10 text-xl cursor-pointer hover:text-gray-300 transition duration-300"
           />
         </div>

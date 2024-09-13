@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
+# Nexium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **Nexium** – a dynamic web-based desktop environment that brings a desktop-like experience to your browser. Nexium provides a user-friendly and interactive workspace where you can manage apps, customize your desktop, and create and edit files seamlessly.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Applications**:
+  - **Settings**: Configure display settings, font size, and clear cache.
+  - **Calculator**: A functional calculator for quick calculations.
+  - **Chrome**: Integrated browser for web navigation.
+  - **Calendar**: Manage and view your calendar events.
+  - **Gallery**: View and manage your images.
+  - **App Store**: Install and manage applications such as:
+    - **Digikala**: E-commerce platform.
+    - **Snapp**: Ride-hailing service.
+    - **Wikipedia**: Access Wikipedia articles.
+    - **Google Maps**: Navigate and explore locations.
+    - **TikTok**: Social media and video platform.
+    - **Memory Game**: Test your memory skills.
+    - **Todo List**: Manage your tasks and to-dos.
+  - **Wallpaper**: Change and customize your desktop wallpaper.
 
-## Expanding the ESLint configuration
+- **Interactive Desktop**:
+  - Create images, decorative folders, and files directly on the desktop.
+  - Edit files using an integrated text editor.
+  - Organize and manage your workspace with draggable windows and context menus.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Customization**:
+  - Full-screen mode for an immersive experience.
+  - Adjust font size for better readability.
+  - Clear application cache to free up space.
 
-- Configure the top-level `parserOptions` property like this:
+- **Right-Click Menu**: Contextual actions for better control and customization of desktop items.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Installation
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To run Nexium locally, follow these steps:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/nexium.git

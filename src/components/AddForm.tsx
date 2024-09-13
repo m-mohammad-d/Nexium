@@ -8,7 +8,7 @@ interface AddFormProps {
 const AddForm: React.FC<AddFormProps> = ({ formType }) => {
   const [name, setName] = useState("");
   const [src, setSrc] = useState("");
-  const [path, setPath] = useState("");
+  const [path, setPath] = useState("/desktop");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,6 +16,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
       name,
       src,
       path,
+      text: formType === "Text" ? "" : undefined, // Save an empty string for text files initially
       type: formType,
     };
 
@@ -27,7 +28,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
     // Reset form fields
     setName("");
     setSrc("");
-    setPath("");
+    setPath("/desktop");
   };
 
   return (
@@ -46,6 +47,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
                   name="name"
                   className="block w-full py-1.5 px-3 text-sm rounded-md border border-slate-900 bg-black/25 outline-none focus:border-blue-500/50"
                   value={name}
+                  required
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -60,6 +62,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
                   name="src"
                   className="block w-full py-1.5 px-3 text-sm rounded-md border border-slate-900 bg-black/25 outline-none focus:border-blue-500/50"
                   value={src}
+                  required
                   onChange={(e) => setSrc(e.target.value)}
                 />
               </div>
@@ -78,6 +81,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
                   name="name"
                   className="block w-full py-1.5 px-3 text-sm rounded-md border border-slate-900 bg-black/25 outline-none focus:border-blue-500/50"
                   value={name}
+                  required
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -92,6 +96,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
                   name="path"
                   className="block w-full py-1.5 px-3 text-sm rounded-md border border-slate-900 bg-black/25 outline-none focus:border-blue-500/50"
                   value={path}
+                  required
                   onChange={(e) => setPath(e.target.value)}
                 />
               </div>
@@ -110,6 +115,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
                   name="name"
                   className="block w-full py-1.5 px-3 text-sm rounded-md border border-slate-900 bg-black/25 outline-none focus:border-blue-500/50"
                   value={name}
+                  required
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -124,6 +130,7 @@ const AddForm: React.FC<AddFormProps> = ({ formType }) => {
                   name="path"
                   className="block w-full py-1.5 px-3 text-sm rounded-md border border-slate-900 bg-black/25 outline-none focus:border-blue-500/50"
                   value={path}
+                  required
                   onChange={(e) => setPath(e.target.value)}
                 />
               </div>

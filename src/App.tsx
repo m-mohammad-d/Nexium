@@ -21,7 +21,8 @@ import Dock from "./components/Dock";
 import AddForm from "./components/AddForm";
 import { WindowContext } from "./context/WindowContext";
 import ImageViewer from "./components/ImageViewer";
-import Wallpaper from "./components/wallpaper";
+import Wallpaper from "./components/Wallpaper";
+import TextEditor from "./components/TextEditor";
 
 const App: React.FC = () => {
   const [formType, setFormType] = useState<string | null>(null);
@@ -87,6 +88,7 @@ const App: React.FC = () => {
       {windows.settings && <SettingsMenu />}
       {windows.imageViewer && <ImageViewer />}
       {windows.Wallpaper && <Wallpaper />}
+      {windows.textEditor && <TextEditor />}
       {windows.addForm && <AddForm formType={formType || ""} />}
       {windows.appList && <AppList />}
 

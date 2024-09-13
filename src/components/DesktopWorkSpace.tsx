@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useRef, useEffect, useContext, useState } from "react";
 import { BsPlusCircleDotted } from "react-icons/bs";
 import { WindowContext } from "../context/WindowContext";
 import { FileContext } from "../context/FileContext";
+import { useTextEditorContext } from "../context/textEditorContext";
 import AddMenuOptions from "./AddMenuOptions";
 
 interface DesktopWorkSpaceProps {
@@ -13,6 +14,7 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
 }) => {
   const { toggleWindow } = useContext(WindowContext)!;
   const { files, setActiveImage } = useContext(FileContext)!;
+  const { setActiveFileId } = useTextEditorContext(); // Get the function to set the active file ID
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -28,6 +30,11 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
     setActiveImage(image);
     toggleWindow("imageViewer");
     setIsMenuOpen(false);
+  };
+
+  const handleTextFileClick = (fileName: string) => {
+    setActiveFileId(fileName); // Set the active file ID
+    toggleWindow("textEditor"); // Open the text editor
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -58,12 +65,14 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
         {files.map((file) => (
           <li key={file.id} className="p-3">
             {file.type === "Image" && file.src ? (
-              <button className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100">
+              <button
+                onClick={() => handleImageView(file.src || "")}
+                className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100"
+              >
                 <img
                   src={file.src}
                   alt={file.name}
                   className="w-16 h-16 object-cover rounded-md"
-                  onClick={() => handleImageView(file.src || "")}
                 />
                 <span className="text-xs mt-1.5 text-white">{file.name}</span>
               </button>
@@ -77,7 +86,10 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
                 <span className="text-xs mt-1.5 text-white">{file.name}</span>
               </button>
             ) : file.type === "Text" ? (
-              <button className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100">
+              <button
+                onClick={() => handleTextFileClick(file.name)} // Set the active file ID on click
+                className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100"
+              >
                 <img
                   src="public/icons/note.png"
                   alt={file.name}

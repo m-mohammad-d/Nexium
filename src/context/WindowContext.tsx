@@ -42,6 +42,7 @@ export const WindowProvider: React.FC<{ children: ReactNode }> = ({
     settings: false,
     imageViewer: false,
     Wallpaper: false,
+    textEditor: false,
   });
 
   const [contextMenu, setContextMenu] = useState<{

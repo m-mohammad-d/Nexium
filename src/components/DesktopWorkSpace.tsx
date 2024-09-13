@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useContext, useState } from "react";
-import { BsPlusCircleDotted } from "react-icons/bs";
+import { BsPlusCircleDotted, BsTrash } from "react-icons/bs";
 import { WindowContext } from "../context/WindowContext";
 import { FileContext } from "../context/FileContext";
 import { useTextEditorContext } from "../context/textEditorContext";
@@ -13,8 +13,8 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
   onSetFormType,
 }) => {
   const { toggleWindow } = useContext(WindowContext)!;
-  const { files, setActiveImage } = useContext(FileContext)!;
-  const { setActiveFileId } = useTextEditorContext(); // Get the function to set the active file ID
+  const { files, setActiveImage, removeFile } = useContext(FileContext)!;
+  const { setActiveFileId } = useTextEditorContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -33,8 +33,12 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
   };
 
   const handleTextFileClick = (fileName: string) => {
-    setActiveFileId(fileName); // Set the active file ID
-    toggleWindow("textEditor"); // Open the text editor
+    setActiveFileId(fileName);
+    toggleWindow("textEditor");
+  };
+
+  const handleDeleteClick = (id: number) => {
+    removeFile(id); // Call removeFile function
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -63,7 +67,7 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
           </button>
         </li>
         {files.map((file) => (
-          <li key={file.id} className="p-3">
+          <li key={file.id} className="p-3 relative">
             {file.type === "Image" && file.src ? (
               <button
                 onClick={() => handleImageView(file.src || "")}
@@ -87,7 +91,7 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
               </button>
             ) : file.type === "Text" ? (
               <button
-                onClick={() => handleTextFileClick(file.name)} // Set the active file ID on click
+                onClick={() => handleTextFileClick(file.name)}
                 className="flex flex-col items-center transition-opacity opacity-80 hover:opacity-100"
               >
                 <img
@@ -98,6 +102,12 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
                 <span className="text-xs mt-1.5 text-white">{file.name}</span>
               </button>
             ) : null}
+            <button
+              onClick={() => handleDeleteClick(file.id)}
+              className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full hover:bg-red-700"
+            >
+              <BsTrash />
+            </button>
           </li>
         ))}
       </ul>
@@ -111,4 +121,3 @@ const DesktopWorkSpace: React.FC<DesktopWorkSpaceProps> = ({
 };
 
 export default DesktopWorkSpace;
-

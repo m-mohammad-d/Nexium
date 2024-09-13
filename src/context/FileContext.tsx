@@ -12,6 +12,7 @@ interface FileContextType {
   activeImage: string | null;
   setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>;
   setActiveImage: React.Dispatch<React.SetStateAction<string | null>>;
+  removeFile: (id: number) => void;
 }
 
 export const FileContext = createContext<FileContextType | undefined>(
@@ -34,14 +35,20 @@ export const FileProvider: React.FC<FileProviderProps> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (files.length > 0) {
-      localStorage.setItem("files", JSON.stringify(files));
-    }
+    localStorage.setItem("files", JSON.stringify(files));
   }, [files]);
+
+  const removeFile = (id: number) => {
+    setFiles((prevFiles) => {
+      const updatedFiles = prevFiles.filter((file) => file.id !== id);
+      localStorage.setItem("files", JSON.stringify(updatedFiles));
+      return updatedFiles;
+    });
+  };
 
   return (
     <FileContext.Provider
-      value={{ files, activeImage, setFiles, setActiveImage }}
+      value={{ files, activeImage, setFiles, setActiveImage, removeFile }}
     >
       {children}
     </FileContext.Provider>

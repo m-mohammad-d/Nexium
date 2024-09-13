@@ -12,7 +12,7 @@ const AppCard: React.FC<AppCardProps> = ({ app, onInstall, onUninstall }) => (
   <li className="flex justify-between items-center p-3 m-2 rounded-md bg-gray-800">
     <div className="flex items-center">
       <img
-        src={`public/appicon/${app.img}.png`}
+        src={`public/appIcon/${app.img}.png`}
         alt={app.name}
         className="w-12 h-12 rounded-md border-2 border-gray-600 object-cover"
       />

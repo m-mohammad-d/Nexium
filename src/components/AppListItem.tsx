@@ -31,7 +31,7 @@ const AppListItem: React.FC<AppListItemProps> = ({
         onContextMenu={handleContextMenu} // Handle right-click
       >
         <img
-          src={`/public/appicon/${app.img}.png`}
+          src={`/public/appIcon/${app.img}.png`}
           alt={app.name}
           className="w-10 h-10 rounded-md"
         />
